@@ -6,7 +6,7 @@ $password = 'パスワード';
 $pdo = new PDO($dsn, $user, $password, 
        array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
-if($_POST["hiddennum"] != NULL){
+if(!empty($_POST["hiddennum"]) != NULL){
 	
     //UPDATE文で入力されているデータレコードの内容を編集
     $id = $_POST["hiddennum"]; 
@@ -100,12 +100,26 @@ if($_POST["hiddennum"] != NULL){
 <body>
     <form action="" method="post">
         <input type="text" name="name" 
-        value="<?php echo $first_name; ?>" placeholder = "名前">
+        value="<?php if(isset($first_name)){
+                        echo $first_name; 
+                    }else{
+                    }
+                ?>"
+	placeholder = "名前">
         <input type="text" name="comment" 
-        value="<?php echo $first_comment; ?>" placeholder = "コメント">
+        value="<?php if(isset($first_comment)){
+                        echo $first_comment; 
+                    }else{
+                    }
+                ?>"
+	placeholder = "コメント">
         <input type="text" name="password" placeholder = "パスワード">
         <input type="hidden" name="hiddennum"
-        value="<?php echo $editnum; ?>">
+        value="<?php if(isset($editnum)){
+                        echo $editnum; 
+                    }else{
+                    }
+                ?>">
         <input type="submit" name="submit1">
     </form>
     <form action="" method="post">
